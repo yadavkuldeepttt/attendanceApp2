@@ -13,6 +13,16 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  role:{
+    type:String
+  },
+  adminName:{
+    type:String,
+    required:true,
+  },
+  companyName:{
+    type:String,
+  },
 });
 
 // Create the User model

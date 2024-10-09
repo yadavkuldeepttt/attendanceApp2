@@ -64,15 +64,6 @@ const storage = multer.diskStorage({
   },
 });
 
-// Configure Multer for image uploads
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, './uploads/profile'); // Update this path as needed
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + path.extname(file.originalname)); // Generate unique filename
-//   },
-// });
 
 // Create multer instance
 const upload = multer({ storage });

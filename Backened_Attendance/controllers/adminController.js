@@ -32,7 +32,7 @@ const adminLogin = async (req, res) => {
         expiresIn: '1h', // Token expiration time
       });
 
-      console.log(token,"token");
+      console.log(token,"token admin generated");
   
       // Return success response
       res.status(200).json({ message: 'Login successful',token });
@@ -41,7 +41,30 @@ const adminLogin = async (req, res) => {
       res.status(500).json({ message: 'Server error' });
     }
   };
+
   
-  module.exports = { adminLogin };
+const getAdminDetails = async (req, res) => {
+  try {
+    const adminId = req.params.id;
+    const admin = await Admin.findById(adminId);
+    console.log(admin,"admin found");
+
+    if (!admin) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+  
+    // Return the necessary admin information (like name and email)
+    res.status(200).json({
+      adminName: admin.adminName,
+      email: admin.email,
+      companyName:admin.companyName
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching user details", error });
+  }
+};
+    
+  module.exports = { adminLogin ,getAdminDetails};
   
 
